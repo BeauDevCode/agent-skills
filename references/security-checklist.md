@@ -128,6 +128,10 @@ For any feature that calls an LLM (chatbots, summarizers, agents, RAG):
 - [ ] Prompt injection assumed; permissions enforced in code, not in the system prompt
 - [ ] Secrets, cross-tenant data, and full system prompts kept out of the context window
 - [ ] Tool/agent permissions scoped; destructive or irreversible actions require confirmation
+- [ ] Tool calls are allowlisted; arguments validated and authorized at execution time
+- [ ] Untrusted content (pages, documents, emails, chat messages) cannot override app policy or grant permissions
+- [ ] RAG indexes partitioned by tenant; documents validated before indexing
+- [ ] Prompt-injection tests cover data exfiltration and unauthorized tool-use attempts
 - [ ] Token, rate, and recursion/loop limits set (bound consumption)
 
 ## Error Handling
