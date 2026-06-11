@@ -50,6 +50,16 @@ The frontmatter fields above are required. The section anatomy is a recommended 
 - Preserve the existing structure and tone
 - Test that YAML frontmatter remains valid after edits
 
+Run the skill validator before opening a PR that adds or edits anything under
+`skills/`:
+
+```bash
+node scripts/validate-skills.js
+```
+
+Include the validation command you ran in the PR description. If the change is
+documentation-only and does not touch `skills/`, say so instead.
+
 ## Testing Hooks
 
 The session-start hook (`hooks/session-start.sh`) injects the `using-agent-skills` meta-skill into every new Claude Code session. A regression test at `hooks/session-start-test.sh` validates the hook's JSON payload — both when `jq` is available and when it isn't.
