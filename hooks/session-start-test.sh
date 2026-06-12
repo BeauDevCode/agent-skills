@@ -19,6 +19,12 @@ const fs = require('fs');
 
 const payload = JSON.parse(fs.readFileSync(process.env.PAYLOAD_PATH, 'utf8'));
 const hasJq = process.env.HAS_JQ === '1';
+const hooks = JSON.parse(fs.readFileSync('hooks/hooks.json', 'utf8'));
+const command = hooks.hooks.SessionStart[0].hooks[0].command;
+
+if (command !== 'bash "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"') {
+  throw new Error('SessionStart command must quote CLAUDE_PLUGIN_ROOT path');
+}
 
 if (hasJq) {
   if (payload.priority !== 'IMPORTANT') {
